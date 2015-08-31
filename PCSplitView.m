@@ -8,7 +8,7 @@
     
     if (!self.subviewRatios.count) return;
     
-    [self clipViewToEdge:self];
+    [self clipViewToEdge:self removeConstraints:YES];
     
     BOOL hz = (self.splitViewDirection == PCSplitViewDirectionHorizontal);
     
@@ -66,14 +66,22 @@
         offsetTracker += (hz)?childFrame.size.width : childFrame.size.height;
         
         childView.frame = childFrame;
-        [self clipViewToEdge:childView];
+        [self clipViewToEdge:childView removeConstraints:NO];
         
         counter++;
     }
 }
 
-- (void)clipViewToEdge:(UIView *)view
+- (void)clipViewToEdge:(UIView *)view removeConstraints:(BOOL)removeConstraints
 {
+    if (removeConstraints)
+    {
+        for (NSLayoutConstraint *constraint in view.constraints.copy)
+        {
+            [view removeConstraint:constraint];
+        }
+    }
+    
     view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     view.translatesAutoresizingMaskIntoConstraints = YES;
 }
