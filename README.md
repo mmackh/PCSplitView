@@ -5,13 +5,15 @@ Ratio changes can easily be animated, and SplitViews can be stacked within one a
 ![Hairline on the left 1px](https://cloud.githubusercontent.com/assets/948693/9575253/68fe4896-4fce-11e5-8e3d-df907a45865e.png)
 ![Hairline expanded](https://cloud.githubusercontent.com/assets/948693/9575252/68faa592-4fce-11e5-8400-12cb4184b2d9.png)
 
-**Notes:**
+**Notes**
 - Ratios must always equal 1
 - Initial PCSplitView must have a frame
 - FixedValues must either equal the number of ratios and subviews, or be omitted completely
+- A fixedValue of -1 indicates that there is no fixed value.
 - Assigning parentViewController ensures that the bottom & top layoutGuides are adhered to
+- To animate changes, call `invalidateLayout` inside the animation block
 
-```
+```objective-c
 - (void)setup
 {
     PCSplitView *containerSplitView = [[PCSplitView alloc] initWithFrame:self.view.bounds];
