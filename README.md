@@ -2,10 +2,14 @@
 Super powerful layout for iOS, simplified. Express your complicated layout in a few lines without the hassle of Auto Layout.
 Ratio changes can easily be animated, and SplitViews can be stacked within one another.
 
-*Notes:*
+![Hairline on the left 1px](https://cloud.githubusercontent.com/assets/948693/9575253/68fe4896-4fce-11e5-8e3d-df907a45865e.png)
+![Hairline expanded](https://cloud.githubusercontent.com/assets/948693/9575252/68faa592-4fce-11e5-8400-12cb4184b2d9.png)
+
+**Notes:**
 - Ratios must always equal 1
 - Initial PCSplitView must have a frame
 - FixedValues must either equal the number of ratios and subviews, or be omitted completely
+- Assigning parentViewController ensures that the bottom & top layoutGuides are adhered to
 
 ```
 - (void)setup
