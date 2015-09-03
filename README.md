@@ -20,6 +20,8 @@ Ratio changes can easily be animated, and SplitViews can be stacked within one a
     containerSplitView.splitViewDirection = PCSplitViewDirectionHorizontal;
     containerSplitView.subviewRatios = @[@(0.1),@(0.9)];
     containerSplitView.subviewFixedValues = @[@(1),@(-1)];
+    [self.view addSubview:containerSplitView];
+    [containerSplitView snapToSuperviewRegardingLayoutGuides:YES parentViewController:self];
     
     UIView *hairline = [[UIView alloc] init];
     hairline.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
@@ -37,8 +39,6 @@ Ratio changes can easily be animated, and SplitViews can be stacked within one a
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moveSplit)];
     [subContainerSplit addGestureRecognizer:tap];
-    
-    [self.view addSubview:containerSplitView];
     
     _containerSplitView = containerSplitView;
 }
