@@ -8,8 +8,6 @@
     
     if (!self.subviewRatios.count) return;
     
-    [self clipViewToEdge:self removeConstraints:YES];
-    
     BOOL hz = (self.splitViewDirection == PCSplitViewDirectionHorizontal);
     
     CGFloat topLayoutGuideLength = (self.parentViewController) ? self.parentViewController.topLayoutGuide.length : 0.0;
@@ -66,6 +64,7 @@
         offsetTracker += (hz)?childFrame.size.width : childFrame.size.height;
         
         childView.frame = childFrame;
+        childView.clipsToBounds = YES;
         [self clipViewToEdge:childView removeConstraints:NO];
         
         counter++;
@@ -84,6 +83,19 @@
     
     view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     view.translatesAutoresizingMaskIntoConstraints = YES;
+}
+
+- (void)snapToSuperviewRegardingLayoutGuides:(BOOL)regardLayoutGuides parentViewController:(UIViewController *)parentViewController;
+{
+    self.parentViewController = parentViewController;
+    
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.superview attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0f constant:0.0f]];
+    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.superview attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:0.0f]];
+    
+    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:(regardLayoutGuides)?(id)self.parentViewController.topLayoutGuide : self.superview attribute:(regardLayoutGuides)?NSLayoutAttributeBottom:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0f constant:0.0f]];
+    [self.superview addConstraint:[NSLayoutConstraint constraintWithItem:(regardLayoutGuides)?(id)self.parentViewController.bottomLayoutGuide : self.superview attribute:(regardLayoutGuides)?NSLayoutAttributeTop:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0f constant:0.0f]];
 }
 
 - (void)invalidateLayout
