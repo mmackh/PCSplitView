@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, PCSplitViewDirection)
 @property (nonatomic) NSArray *subviewRatios;
 @property (nonatomic) NSArray *subviewFixedValues;
 
+- (void)snapToSuperviewRegardingLayoutGuides:(BOOL)regardLayoutGuides parentViewController:(UIViewController *)parentViewController;
 - (void)invalidateLayout;
 
 @end
