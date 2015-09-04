@@ -1,18 +1,24 @@
 # PCSplitView
-Super powerful layout for iOS, simplified. Express your complicated layout in a few lines without the hassle of Auto Layout.
-Ratio changes can easily be animated, and SplitViews can be stacked within one another.
+Super powerful layout for iOS, simplified. Express your complicated layout in a few lines without the hassle of Auto Layout. Ratio changes can easily be animated, and PCSplitViews can be stacked within one another.
 
-![Hairline on the left 1px](https://cloud.githubusercontent.com/assets/948693/9575253/68fe4896-4fce-11e5-8e3d-df907a45865e.png)
-![Hairline expanded](https://cloud.githubusercontent.com/assets/948693/9575252/68faa592-4fce-11e5-8400-12cb4184b2d9.png)
+By [@mmackh](https://twitter.com/mmackh)
+
+**Demo Video**
+
+![Demo Video](https://cloud.githubusercontent.com/assets/948693/9679237/25bed5ba-52ed-11e5-8949-188558697794.gif)
+
+*This video highlights a design pattern I'd like to see more in apps: BFD (bottom first design), i.e. everything important being easily reachable*
 
 **Notes**
+- Splits can be 
 - Ratios must always equal 1
 - Initial PCSplitView must have a frame
 - FixedValues must either equal the number of ratios and subviews, or be omitted completely
 - A fixedValue of -1 indicates that there is no fixed value.
-- Assigning parentViewController ensures that the bottom & top layoutGuides are adhered to
+- If you're adding the view in view did load, ensure to call snapToSuperviewRegardingLayoutGuides:parentViewController:
 - To animate changes, call `invalidateLayout` inside the animation block
 
+**Sample Code**
 ```objective-c
 - (void)setup
 {
