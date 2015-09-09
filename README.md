@@ -10,7 +10,6 @@ By [@mmackh](https://twitter.com/mmackh)
 *This video highlights a design pattern I'd like to see more in apps: BFD (bottom first design), i.e. everything important being easily reachable*
 
 **Notes**
-- Splits can be 
 - Ratios must always equal 1
 - Initial PCSplitView must have a frame
 - FixedValues must either equal the number of ratios and subviews, or be omitted completely
