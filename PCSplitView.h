@@ -28,6 +28,8 @@ extern NSInteger const PCSplitViewSendToBackAndDisableClipOnViewTag;
 @property (nonatomic) NSArray *subviewRatios;
 @property (nonatomic) NSArray *subviewFixedValues;
 
++ (instancetype)splitViewWithSubviewLayout:(NSString *)subviewLayout direction:(PCSplitViewDirection)splitDirection configurationHandler:(void(^)(PCSplitView *splitView))configurationHandler;
+
 /// Convenience method for layout. Divide individual layouts with commas (,) and divide ratios and fixed values with a star (*), e.g. @"0.5*-1,0.5*-1" to get an equal split between subviews
 - (void)setSubviewLayout:(NSString *)subviewLayout direction:(PCSplitViewDirection)splitDirection;
 
