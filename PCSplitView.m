@@ -20,6 +20,15 @@ NSInteger const PCSplitViewSendToBackAndDisableClipOnViewTag = 160894;
 
 @implementation PCSplitView
 
++ (instancetype)splitViewWithSubviewLayout:(NSString *)subviewLayout direction:(PCSplitViewDirection)splitDirection configurationHandler:(void(^)(PCSplitView *splitView))configurationHandler
+{
+    PCSplitView *splitView = [PCSplitView new];
+    [splitView setSubviewLayout:subviewLayout direction:splitDirection];
+    __weak typeof(splitView) weakSplitView = splitView;
+    configurationHandler(weakSplitView);
+    return splitView;
+}
+
 - (void)setSubviewLayout:(NSString *)subviewLayout direction:(PCSplitViewDirection)splitDirection
 {
     self.splitViewDirection = splitDirection;
@@ -77,7 +86,7 @@ NSInteger const PCSplitViewSendToBackAndDisableClipOnViewTag = 160894;
     }
     
     [super layoutSubviews];
-    
+        
     if (!self.originalSubviews || self.originalSubviews.count != self.subviews.count) self.originalSubviews = self.subviews;
     
     NSMutableArray *subviewsMutable = [NSMutableArray new];
@@ -183,7 +192,9 @@ NSInteger const PCSplitViewSendToBackAndDisableClipOnViewTag = 160894;
 
 - (void)snapToSuperview
 {
-    [self snapToSuperviewRegardingLayoutGuides:NO parentViewController:nil];
+    self.frame = self.superview.bounds;
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 }
 
 - (void)snapToSuperviewRegardingLayoutGuides:(BOOL)regardLayoutGuides parentViewController:(UIViewController *)parentViewController;
