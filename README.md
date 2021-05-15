@@ -1,3 +1,5 @@
+# Deprecated: See SplitView, ScrollingView & ConditionalLayoutView from [BaseComponents](https://github.com/mmackh/BaseComponents)
+
 # PCSplitView
 Super powerful layout for iOS, simplified. Express your complicated layout in a few lines without the hassle of Auto Layout. Ratio changes can easily be animated, and PCSplitViews can be stacked within one another.
 
